@@ -55,7 +55,7 @@ export default function () {
                     this.unlistentoken = listen(({ prompt }) => {
                         this.setState({ prompt: () => 
                             prompt().then(installed => {
-                                installed && unlisten();
+                                installed && this.unlisten();
                                 return installed;
                             })
                         });  
