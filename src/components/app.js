@@ -7,6 +7,14 @@ export default class App extends Component {
 			e.preventDefault();
 			this.setState({ deferredInstallPrompt: e });
 		});
+
+		window.addEventListener('appinstalled', (evt) => {
+			this.setState({ wasInstalled: true });
+		});
+
+		if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+			this.setState({ runningLocally: true });
+		}
 	}
 
 	handleInstallClick = () => {
@@ -20,11 +28,13 @@ export default class App extends Component {
 		}
 	}
 
-	render({},{ deferredInstallPrompt , message}) {
+	render({},{ deferredInstallPrompt , message, wasInstalled, runningLocally}) {
 		return (
 			<div id="app">
 				<h1>Install Test</h1>
 				{ deferredInstallPrompt && <a href="#" onClick={this.handleInstallClick}>Do Install</a> || <p>{message || 'Not yet able to install'}</p>}
+				<p>{wasInstalled && 'App is installed' || 'App is not installed'}</p>
+				<p>{runningLocally && 'App is running locally' || 'App is not running locally'}</p>
 			</div>
 		);
 	}
