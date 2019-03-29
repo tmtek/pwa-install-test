@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import installer from '../install'
 
-function App({isNative, installPrompt}) {
+function App({ isNative, installPrompt }) {
 	return (
 		<div id="app">
 			<h1>Install Test</h1>
@@ -11,4 +11,4 @@ function App({isNative, installPrompt}) {
 	);
 }
 
-export default installer(App);
+export default installer()(App);
