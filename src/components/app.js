@@ -1,12 +1,14 @@
 import { h, Component } from 'preact';
-import installer from '../install'
+import installer from 'preact-pwa-install'
 
 function App({ isStandalone, installPrompt }) {
 	return (
 		<div id="app">
 			<h1>Install Test</h1>
-			{ installPrompt && <a href="#" onClick={installPrompt}>Do Install</a> || <p>Nothing to install</p>}
-			<p>{ isStandalone && 'App is running locally' || 'App is not running locally' }</p>
+			{
+				installPrompt && <a href="#" onclick={installPrompt}>Install as PWA</a> 
+				|| isStandalone && 'PWA is installed!'
+			}
 		</div>
 	);
 }
